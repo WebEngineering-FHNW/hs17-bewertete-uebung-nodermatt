@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta name="layout" content="main"/>
+        <meta name="layout" content="design"/>
         <meta charset="UTF-8">
         <asset:stylesheet src="application.css"/>
         <title></title>
@@ -11,22 +11,19 @@
         <div class="alert alert-info">my info to you ${val}</div>
 
         <g:include controller="home" action="info"></g:include>
-        <a href="#list-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+
         <div class="nav" role="navigation">
         </div>
-
-        <h2>Meine Artikel</h2>
         <div id="list-article" class="content scaffold-list" role="main">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
+            <h1><g:message code="YouBarter.home.myArticles"/></h1>
             <f:table collection="${articleList}" except="user"/>
 
             <div class="pagination">
                 <g:paginate total="${articleCount ?: 0}" />
             </div>
         </div>
-        <h2>Meine Angebote</h2>
         <div id="list-offer" class="content scaffold-list" role="main">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
+            <h1><g:message code="YouBarter.home.myOffers"/></h1>
             <f:table collection="${offerList}" except="offerer"/>
             <div class="pagination">
                 <g:paginate total="${offerCount ?: 0}" />

@@ -24,9 +24,9 @@
             </div>
         </div>
         <g:form controller="offer" action="create" method="post">
-            <label for="search">Category</label>
+        </br> my article param : ${params.id}
             <g:textField name="offer" placeholder="Enter offer" />
-            <g:hiddenField name="articleID" value="${params.id}" />
+            <g:hiddenField name="articleID" id="articleID" value="${params.id}" />
             <g:submitButton name="create" action="create" />
         </g:form>
     </body>

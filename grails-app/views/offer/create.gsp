@@ -29,7 +29,7 @@
               <br>my date: ${params.get("posted_day") + "." + params.get("posted_month") + "." + params.get("posted_year")}
               <fieldset class="form">
                   <f:all bean="offer" except="posted, offerer, article"/>
-                  <g:textField name="offerer.id" id="offerer" hidden="true" value="${session.getAttribute("user")}"></g:textField>
+                  <g:textField name="offerer.id" id="offerer" hidden="true" value="${params.get("offerer.id")}"></g:textField>
                   <g:textField name="article.id" id="article" hidden="true" value="${params.get("article.id")}"></g:textField>
                   <g:submitButton name="create" class="save btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
               </fieldset>

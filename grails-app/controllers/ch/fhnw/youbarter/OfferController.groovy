@@ -1,7 +1,9 @@
 package ch.fhnw.youbarter
 
 import com.mycompany.myapp.User
+import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
+import org.springframework.beans.factory.annotation.Autowired
 
 import java.time.LocalDate
 
@@ -13,6 +15,8 @@ import ch.fhnw.youbarter.Article
 class OfferController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    @Autowired
+    SpringSecurityService springSecurityService
 
     @Secured('ROLE_ADMIN')
     def index(Integer max) {
@@ -21,6 +25,8 @@ class OfferController {
     }
     @Secured("IS_AUTHENTICATED_FULLY")
     def show(Offer offer) {
+        println("Invoked show")
+        println(offer.toString())
         respond offer
     }
 
@@ -28,9 +34,11 @@ class OfferController {
     def create() {
 
         LocalDate date = LocalDate.now()
-
+        println(params)
         Article article = Article.findById(params.articleID)
-        User offerer = User.findById(session.getAttribute("user"))
+        println("fining article for id: " + params.articleID)
+        //User offerer = User.findById(session.getAttribute("user"))
+        User offerer = springSecurityService.getCurrentUser()
         params.put("article.id", article.id)
         params.put("offerer.id", offerer.id)
         params.put("posted_year", date.getYear())
@@ -43,6 +51,12 @@ class OfferController {
     @Secured("IS_AUTHENTICATED_FULLY")
     def save(Offer offer) {
         log.info("invoked save")
+        print("==========")
+        print(offer.article)
+        print(offer.offerer)
+        print(offer.category)
+        print(offer.posted)
+        println()
         print("invoked save")
         print(params)
         if (offer == null) {
@@ -52,7 +66,7 @@ class OfferController {
         }
 
         if (offer.hasErrors()) {
-            print("has errors")
+            println("has errors")
             transactionStatus.setRollbackOnly()
             respond offer.errors, view:'create'
             return
