@@ -25,7 +25,6 @@
                 </div>
                 <div class="collapse navbar-collapse" id="mynav">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="">Signup</a></li>
                         <sec:ifLoggedIn>
                             <li><a href="/logout">Logout</a></li>
                         </sec:ifLoggedIn>

@@ -1,5 +1,7 @@
 package com.mycompany.myapp
 
+import ch.fhnw.youbarter.Article
+import ch.fhnw.youbarter.Offer
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 import grails.compiler.GrailsCompileStatic
@@ -18,14 +20,18 @@ class User implements Serializable {
     boolean accountLocked
     boolean passwordExpired
 
+    static hasMany = [offers: Offer, articles:Article]
+    //get all articles
+    //get all offers
+
     Set<Role> getAuthorities() {
         (UserRole.findAllByUser(this) as List<UserRole>)*.role as Set<Role>
     }
 
-    @Override
     String toString() {
-        return username
+        "$username"
     }
+
     static constraints = {
         password nullable: false, blank: false, password: true
         username nullable: false, blank: false, unique: true
