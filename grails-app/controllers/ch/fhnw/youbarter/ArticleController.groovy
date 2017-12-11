@@ -30,12 +30,13 @@ class ArticleController {
         respond article
     }
 
-    @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
+    @Secured("IS_AUTHENTICATED_FULLY")
     def create() {
         respond new Article(params)
     }
 
     @Transactional
+    @Secured("IS_AUTHENTICATED_FULLY")
     def save(Article article) {
         if (article == null) {
             transactionStatus.setRollbackOnly()

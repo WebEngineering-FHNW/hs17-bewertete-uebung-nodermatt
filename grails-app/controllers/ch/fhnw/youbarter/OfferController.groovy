@@ -1,5 +1,7 @@
 package ch.fhnw.youbarter
 
+import grails.plugin.springsecurity.annotation.Secured
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 import ch.fhnw.youbarter.Article
@@ -10,22 +12,24 @@ class OfferController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
 
-
+    @Secured('ROLE_ADMIN')
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Offer.list(params), model:[offerCount: Offer.count()]
     }
-
+    @Secured('ROLE_ADMIN')
     def show(Offer offer) {
         respond offer
     }
 
+    @Secured("IS_AUTHENTICATED_FULLY")
     def create() {
         Article article = Article.findById(params.articleID)
         respond new Offer(params), model:[article: article]
     }
 
     @Transactional
+    @Secured("IS_AUTHENTICATED_FULLY")
     def save(Offer offer) {
         log.info("invoked save")
         if (offer == null) {
