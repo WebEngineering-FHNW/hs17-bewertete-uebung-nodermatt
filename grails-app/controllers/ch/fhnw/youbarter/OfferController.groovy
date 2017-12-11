@@ -1,6 +1,9 @@
 package ch.fhnw.youbarter
 
+import com.mycompany.myapp.User
 import grails.plugin.springsecurity.annotation.Secured
+
+import java.time.LocalDate
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
@@ -17,14 +20,23 @@ class OfferController {
         params.max = Math.min(max ?: 10, 100)
         respond Offer.list(params), model:[offerCount: Offer.count()]
     }
-    @Secured('ROLE_ADMIN')
+    @Secured("IS_AUTHENTICATED_FULLY")
     def show(Offer offer) {
         respond offer
     }
 
     @Secured("IS_AUTHENTICATED_FULLY")
     def create() {
+
+        LocalDate date = LocalDate.now()
+
         Article article = Article.findById(params.articleID)
+        User offerer = User.findById(session.getAttribute("user"))
+        params.put("article.id", article.id)
+        params.put("offerer.id", offerer.id)
+        params.put("posted_year", date.getYear())
+        params.put("posted_month", date.getMonthValue())
+        params.put("posted_day", date.getDayOfMonth())
         respond new Offer(params), model:[article: article]
     }
 
@@ -32,6 +44,8 @@ class OfferController {
     @Secured("IS_AUTHENTICATED_FULLY")
     def save(Offer offer) {
         log.info("invoked save")
+        print("invoked save")
+        print(params)
         if (offer == null) {
             transactionStatus.setRollbackOnly()
             notFound()
@@ -39,6 +53,7 @@ class OfferController {
         }
 
         if (offer.hasErrors()) {
+            print("has errors")
             transactionStatus.setRollbackOnly()
             respond offer.errors, view:'create'
             return
