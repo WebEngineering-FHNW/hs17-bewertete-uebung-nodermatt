@@ -10,6 +10,7 @@
       <h1>Create new offer</h1>
       <p>Lorem ipsum...</p>
       <div class="container">
+
           <g:form action="save">
               my params ${params}
               my article: ${article?.name}

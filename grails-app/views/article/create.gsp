@@ -27,7 +27,8 @@
             </g:hasErrors>
             <g:form action="save">
                 <fieldset class="form">
-                    <f:all bean="article" except="offers"/>
+                    <f:all bean="article" except="offers, user"/>
+                    <g:textField name="user.id" id="user" hidden="true" value="${session.getAttribute("user")}"></g:textField>
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />

@@ -1,12 +1,20 @@
 package ch.fhnw.youbarter
 
+import com.mycompany.myapp.User
+import com.mycompany.myapp.UserService
+import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
+import org.springframework.beans.factory.annotation.Autowired
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
 class ArticleController {
+
+    @Autowired
+    SpringSecurityService springSecurityService
+
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -32,6 +40,8 @@ class ArticleController {
 
     @Secured("IS_AUTHENTICATED_FULLY")
     def create() {
+        User user = springSecurityService.currentUser
+        session.setAttribute("user", user.id)
         respond new Article(params)
     }
 

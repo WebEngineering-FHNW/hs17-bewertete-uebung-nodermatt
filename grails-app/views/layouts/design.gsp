@@ -21,12 +21,19 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="">YouBarter</a>
+                    <a class="navbar-brand" href="/">YouBarter</a>
                 </div>
                 <div class="collapse navbar-collapse" id="mynav">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="">Signup</a></li>
-                        <li><a href="">Login</a></li>
+                        <sec:ifLoggedIn>
+                            <li><a href="/logout">Logout</a></li>
+                        </sec:ifLoggedIn>
+                        <sec:ifNotLoggedIn>
+                            <li><a href="/login/auth">Login</a></li>
+                        </sec:ifNotLoggedIn>
+
+
                     </ul>
                 </div>
             </div>

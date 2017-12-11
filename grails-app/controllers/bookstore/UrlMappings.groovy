@@ -11,6 +11,7 @@ class UrlMappings {
         //custom mapping of root to Article index page
         "/"(controller:"Article")
         "/admin"(view:"/index")
+        '/logout'(controller: "LogOut")
 //        "/"(view:'/index')
 //        "/home"(view:'/home/index')
         "500"(view:'/error')
