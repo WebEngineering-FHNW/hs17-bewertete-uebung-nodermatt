@@ -7,7 +7,7 @@
     </head>
     <body>
         <g:if test="${flash.message}">
-            <div class="message alert" role="status">${flash.message}</div>
+            <div class="alert alert-success" role="status">${flash.message}</div>
         </g:if>
         <h1><g:message code="default.show.label" args="[entityName]" /></h1>
         <h1><g:message code="YouBarter.article.show.heading" args="${article}" /></h1>

@@ -8,22 +8,26 @@
     </head>
     <body>
         <h1><g:message code="app.home.title"/></h1>
-        <div class="alert alert-info">my info to you ${val}</div>
-
-        <g:include controller="home" action="info"></g:include>
-
+        <g:if test="${flash.message}">
+            <div class="alert alert-success" role="status">${flash.message}</div>
+        </g:if>
         <div class="nav" role="navigation">
         </div>
         <div id="list-article" class="content scaffold-list" role="main">
             <h1><g:message code="YouBarter.home.myArticles"/></h1>
+            <g:if test="${articleCount == 0}">
+                <div class="alert alert-info"><g:message code="YouBarter.home.alert.noArticles"/></div>
+            </g:if>
             <f:table collection="${articleList}" except="user"/>
-
             <div class="pagination">
                 <g:paginate total="${articleCount ?: 0}" />
             </div>
         </div>
         <div id="list-offer" class="content scaffold-list" role="main">
             <h1><g:message code="YouBarter.home.myOffers"/></h1>
+            <g:if test="${offerCount == 0}">
+                <div class="alert alert-info"><g:message code="YouBarter.home.alert.noOffers"/></div>
+            </g:if>
             <f:table collection="${offerList}" except="offerer"/>
             <div class="pagination">
                 <g:paginate total="${offerCount ?: 0}" />

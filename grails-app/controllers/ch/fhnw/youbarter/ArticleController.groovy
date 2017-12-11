@@ -65,9 +65,11 @@ class ArticleController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'article.label', default: 'Article'), article.id])
-                redirect article
+                //redirect article
+                redirect (controller:'Home')//show home controller
             }
-            '*' { respond article, [status: CREATED] }
+            '*' { respond article, [status: CREATED] } //default, changed it to custom beavhiour below
+            //redirect (controller:'Home', ){ respond article, [status: CREATED] }
         }
     }
 
