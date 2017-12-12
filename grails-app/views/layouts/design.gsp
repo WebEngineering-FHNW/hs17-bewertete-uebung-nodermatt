@@ -17,13 +17,17 @@
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mynav">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                        <span class="icon-bar">MyBarter</span>
+                        <span class="icon-bar">Browse</span>
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/">YouBarter</a>
                 </div>
                 <div class="collapse navbar-collapse" id="mynav">
+                    <ul>
+                        <li><a href="/home" class="btn">MyBarter</a></li>
+                        <li><a href="/" class="btn">Browse</a></li>
+                    </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <sec:ifLoggedIn>
                             <li><a href="/logout">Logout</a></li>

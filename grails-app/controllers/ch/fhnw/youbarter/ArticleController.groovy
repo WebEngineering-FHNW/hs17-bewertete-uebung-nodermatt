@@ -25,12 +25,27 @@ class ArticleController {
     def find(int id){
         Article item = Article.get(id)
     }
+    @Secured("IS_AUTHENTICATED_FULLY")
+    def filter() {
+        Category cat = Category.findById(params.filter)
+        def ax = Article.findAllWhere(category: cat)
+        println("mein filter: " + params.get("filter"))
+        println(ax.toString())
+        return ax
+    }
 
     @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
     def index(Integer max) {
-        List<Article> articles = Article.list()
+        def categories = Category.list()
+        List<Article> articles
+        //find all where category = id or if empty all
+        if(params.filter) {
+            articles = filter()
+        } else {
+            articles = Article.list()
+        }
         params.max = Math.min(max ?: 10, 100)
-        respond Article.list(params), model:[articleCount: Article.count(), articles: articles]
+        respond Article.list(params), model:[articleCount: articles.size(), articles: articles, categories: categories]
     }
 
     @Secured("IS_AUTHENTICATED_ANONYMOUSLY")

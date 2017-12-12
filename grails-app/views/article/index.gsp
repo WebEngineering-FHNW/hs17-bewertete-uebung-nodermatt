@@ -10,14 +10,17 @@
         <g:form controller="Article" action="create">
             <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
         </g:form>
-        circle in results
-        <select></select>
-        <h2>all offers</h2>
-        All articles: ${articleCount}
 
+        <g:form controller="Article">
+            <g:select name="filter" from="${categories}" value="1" optionKey="id" optionValue="name" />
+            <g:submitButton name="btnFilter" class="btn btn-primary" value="${message(code: 'YouBarter.home.btnFilter')}" />
+        </g:form>
         <div class="container-fluid">
             <div class="row">
-                <g:each var="article" in="${articleList}">
+                <g:if test="${articleCount == 0}">
+                    <div class="alert alert-danger"><g:message code="YouBarter.home.error.noResults"/></div>
+                </g:if>
+                <g:each var="article" in="${articles}">
                     <div class="col-xs-4 col-md-3">
                         <div class="panel panel-default" style="width:120px">
                             <img width="100" src="img_avatar3.png" alt="Card image">
