@@ -22,10 +22,11 @@
           </g:hasErrors>
           <g:form action="save">
               <fieldset class="form">
-                  <f:all bean="offer" except="posted, offerer, article, offeredArticle, category"/>
+                  <f:all bean="offer" except="posted, offerer, article, offeredArticle"/>
                   <div class="fieldcontain required">
                       <label for="offeredArticle.id">Suggestions</label>
                       <g:select name="offeredArticle.id" from="${params.get("offeredArticle.id")}" value="1" optionKey="id" optionValue="name" />
+
                   </div>
                   <g:textField name="offerer.id" id="offerer" hidden="true" value="${params.get("offerer.id")}"></g:textField>
                   <g:textField name="article.id" id="article" hidden="true" value="${params.get("article.id")}"></g:textField>

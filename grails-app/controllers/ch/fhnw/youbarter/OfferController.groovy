@@ -48,7 +48,7 @@ class OfferController {
         params.put("posted_year", date.getYear())
         params.put("posted_month", date.getMonthValue())
         params.put("posted_day", date.getDayOfMonth())
-        respond new Offer(params), model:[article: article]
+        respond new Offer(params)
     }
 
     @Transactional
@@ -58,7 +58,7 @@ class OfferController {
         print("==========")
         print(offer.article)
         print(offer.offerer)
-        print(offer.category)
+        print(offer.offeredArticle)
         print(offer.posted)
         println()
         print("invoked save")

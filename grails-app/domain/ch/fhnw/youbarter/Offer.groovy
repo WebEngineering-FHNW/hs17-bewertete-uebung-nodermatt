@@ -3,7 +3,7 @@ package ch.fhnw.youbarter
 import com.mycompany.myapp.User
 
 class Offer {
-    static belongsTo = [offerer: User, article: Article, category: Category]
+    static belongsTo = [offerer: User, article: Article]
     Date posted = new Date()
     String message
     Article offeredArticle
@@ -12,10 +12,10 @@ class Offer {
         message nullable: true
     }
 
-    Offer(User offerer, Article article, Category category) {
+    Offer(User offerer, Article article) {
         this.offerer = offerer
         this.article = article
-        this.category = category
+
         this.posted = new Date()
     }
 }

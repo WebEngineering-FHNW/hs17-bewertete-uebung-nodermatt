@@ -14,9 +14,7 @@ class Article {
     static constraints = {
     }
 
-    String toString() {
-        return name
-    }
+
 
     List<Category> getCategories() {
         return categories
