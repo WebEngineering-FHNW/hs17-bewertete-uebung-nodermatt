@@ -26,9 +26,9 @@ class BootStrap {
         Category categoryGames = new Category(name: "Games").save()
         Category categoryBooks = new Category(name: "Books").save()
         def categories = [categoryBooks, categoryClothes, categoryGames]
-        Article article = new Article(name:"Bike", description:"fun bike", username:testUser, category: categoryClothes).save()
-        Article article2 = new Article(name:"Bike", description:"fun bike", username:testUser, category: categoryClothes).save()
-        Offer offer = new Offer(offerer:testUser, article:article, category: categoryGames, posted: new Date()).save()
+        Article article = new Article(name:"Playstation", description:"fun bike", user:nic, category: categoryClothes).save()
+        Article article2 = new Article(name:"Hemd", description:"fun bike", user:dirk, category: categoryClothes).save()
+
 
 //        assert User.count() == 1
 //        assert Role.count() == 1

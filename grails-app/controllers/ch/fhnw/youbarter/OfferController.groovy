@@ -39,8 +39,12 @@ class OfferController {
         println("fining article for id: " + params.articleID)
         //User offerer = User.findById(session.getAttribute("user"))
         User offerer = springSecurityService.getCurrentUser()
+        println("finding articles of offerer" + offerer)
+        List<Article> suggestions = Article.findAllWhere(user:offerer)
+        println("found these: " + suggestions.toString())
         params.put("article.id", article.id)
         params.put("offerer.id", offerer.id)
+        params.put("offeredArticle.id", suggestions)
         params.put("posted_year", date.getYear())
         params.put("posted_month", date.getMonthValue())
         params.put("posted_day", date.getDayOfMonth())
@@ -78,7 +82,8 @@ class OfferController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'offer.label', default: 'Offer'), offer.id])
-                redirect offer
+                //redirect offer
+                redirect (controller:'Home')//show home controller instead
             }
             '*' { respond offer, [status: CREATED] }
         }

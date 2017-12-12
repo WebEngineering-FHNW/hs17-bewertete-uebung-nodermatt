@@ -5,8 +5,11 @@ import com.mycompany.myapp.User
 class Offer {
     static belongsTo = [offerer: User, article: Article, category: Category]
     Date posted = new Date()
+    String message
+    Article offeredArticle
 
     static constraints = {
+        message nullable: true
     }
 
     Offer(User offerer, Article article, Category category) {

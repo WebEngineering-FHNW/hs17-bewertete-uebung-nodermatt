@@ -21,22 +21,23 @@
               </ul>
           </g:hasErrors>
           <g:form action="save">
-              my params ${params}
-
-              <br>my article: ${params.get("article.id")}
-              <br>my categories:
-              <br>my offerer: ${params.get("offerer.id")}
-              <br>my date: ${params.get("posted_day") + "." + params.get("posted_month") + "." + params.get("posted_year")}
               <fieldset class="form">
-                  <f:all bean="offer" except="posted, offerer, article"/>
+                  <f:all bean="offer" except="posted, offerer, article, offeredArticle, category"/>
+                  <div class="fieldcontain required">
+                      <label for="offeredArticle.id">Suggestions</label>
+                      <g:select name="offeredArticle.id" from="${params.get("offeredArticle.id")}" value="1" optionKey="id" optionValue="name" />
+                  </div>
                   <g:textField name="offerer.id" id="offerer" hidden="true" value="${params.get("offerer.id")}"></g:textField>
                   <g:textField name="article.id" id="article" hidden="true" value="${params.get("article.id")}"></g:textField>
                   <g:submitButton name="create" class="save btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
               </fieldset>
-              <fieldset class="buttons">
-                  <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-              </fieldset>
           </g:form>
+          my params ${params}
+
+          <br>my article: ${params.get("article.id")}
+          <br>my categories: ${params.get("offeredArticle.id")}
+          <br>my offerer: ${params.get("offerer.id")}
+          <br>my date: ${params.get("posted_day") + "." + params.get("posted_month") + "." + params.get("posted_year")}
       </div> 
       </div> 
     </body>
