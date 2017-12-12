@@ -3,6 +3,7 @@ guide:
   languages:
     - en
     - de
+
 grails:
     profile: web
     codegen:

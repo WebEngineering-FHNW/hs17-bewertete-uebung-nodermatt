@@ -19,6 +19,12 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mynav">
                         <span class="icon-bar">MyBarter</span>
                         <span class="icon-bar">Browse</span>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><g:message code="YouBarter.design.languageDropDown" default="Languages"/> <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <localeNavBar:localeDropdownListItems uri="${request.forwardURI}"/>
+                            </ul>
+                        </li>
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/">YouBarter</a>
@@ -35,8 +41,6 @@
                         <sec:ifNotLoggedIn>
                             <li><a href="/login/auth">Login</a></li>
                         </sec:ifNotLoggedIn>
-
-
                     </ul>
                 </div>
             </div>

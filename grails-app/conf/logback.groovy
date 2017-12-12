@@ -8,6 +8,8 @@ import java.nio.charset.Charset
 conversionRule 'clr', ColorConverter
 conversionRule 'wex', WhitespaceThrowableProxyConverter
 
+def targetDir = BuildSettings.TARGET_DIR
+
 // See http://logback.qos.ch/manual/groovy.html for details on configuration
 appender('STDOUT', ConsoleAppender) {
     encoder(PatternLayoutEncoder) {
@@ -21,8 +23,26 @@ appender('STDOUT', ConsoleAppender) {
                         '%m%n%wex' // Message
     }
 }
+appender("FILE",FileAppender){
+    file="${targetDir}/testFile.log"
+    append=true
+    encoder(PatternLayoutEncoder){
+        pattern="%level%logger-%msg%n"
+    }
+}
 
-def targetDir = BuildSettings.TARGET_DIR
+appender("ROLLING_FILE",RollingFileAppender){
+    append=true
+    encoder(PatternLayoutEncoder){
+        pattern="%level%logger-%msg%n"
+    }
+    rollingPolicy(TimeBasedRollingPolicy){
+        fileNamePattern="${targetDir}/myApp-%d{yyyy-MM-dd_HH-mm}.log"
+        maxHistory=30
+        totalSizeCap="2GB"
+    }
+}
+
 if (Environment.isDevelopmentMode() && targetDir != null) {
     appender("FULL_STACKTRACE", FileAppender) {
         file = "${targetDir}/stacktrace.log"
@@ -33,5 +53,5 @@ if (Environment.isDevelopmentMode() && targetDir != null) {
     }
     logger("StackTrace", ERROR, ['FULL_STACKTRACE'], false)
 }
-logger 'com.mycompany.myapp', INFO, ['STDOUT'], false
+logger 'ch.fhnw.youbarter', INFO, ['STDOUT'], false
 root(ERROR, ['STDOUT'])

@@ -10,7 +10,16 @@
         <g:form controller="Article" action="create">
             <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
         </g:form>
+        <!-- tag::navBarLocaleDropDown[] -->
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><g:message code="YouBarter.design.languageDropDown" default="Languages"/> <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <localeNavBar:localeDropdownListItems uri="${request.forwardURI}"/>
+            </ul>
+        </li>
 
+    <!-- end::navBarLocaleDropDown[] -->
+        <localeNavBar:localeDropdownListItems uri="${request.forwardURI}"/>
         <g:form controller="Article">
             <g:select name="filter" from="${categories}" value="1" optionKey="id" optionValue="name" />
             <g:submitButton name="btnFilter" class="btn btn-primary" value="${message(code: 'YouBarter.home.btnFilter')}" />
