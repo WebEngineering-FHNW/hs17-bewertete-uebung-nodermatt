@@ -32,7 +32,7 @@
                 <g:if test="${articleCount == 0}">
                     <div class="alert alert-danger"><g:message code="YouBarter.home.error.noResults"/></div>
                 </g:if>
-
+                </br> my articles : ${articleList}
                 <g:each var="article" in="${articles}">
                     <div class="col-xs-4 col-md-3">
                         <div class="panel panel-default" style="width:120px">

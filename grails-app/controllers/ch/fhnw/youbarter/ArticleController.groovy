@@ -45,7 +45,7 @@ class ArticleController {
             articles = Article.list()
         }
         params.max = Math.min(max ?: 10, 100)
-        respond model:[articleCount: articles.size(), articles: articles, categories: categories]
+        render(view:'index', model:[articleCount: articles.size(), articles: articles, categories: categories])
         //respond Article.list(params), model:[articleCount: articles.size(), articles: articles, categories: categories]
     }
 
@@ -113,7 +113,7 @@ class ArticleController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'article.label', default: 'Article'), article.id])
-                redirect article
+                redirect (controller:'Home')//show home controller
             }
             '*'{ respond article, [status: OK] }
         }
@@ -134,7 +134,7 @@ class ArticleController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'article.label', default: 'Article'), article.id])
-                redirect action:"index", method:"GET"
+                redirect (controller:'Home')//show home controller
             }
             '*'{ render status: NO_CONTENT }
         }
