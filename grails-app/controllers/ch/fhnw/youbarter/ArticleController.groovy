@@ -45,7 +45,8 @@ class ArticleController {
             articles = Article.list()
         }
         params.max = Math.min(max ?: 10, 100)
-        respond Article.list(params), model:[articleCount: articles.size(), articles: articles, categories: categories]
+        respond model:[articleCount: articles.size(), articles: articles, categories: categories]
+        //respond Article.list(params), model:[articleCount: articles.size(), articles: articles, categories: categories]
     }
 
     @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
@@ -87,12 +88,13 @@ class ArticleController {
             //redirect (controller:'Home', ){ respond article, [status: CREATED] }
         }
     }
-
+    @Secured("IS_AUTHENTICATED_FULLY")
     def edit(Article article) {
         respond article
     }
 
     @Transactional
+    @Secured("IS_AUTHENTICATED_FULLY")
     def update(Article article) {
         if (article == null) {
             transactionStatus.setRollbackOnly()
@@ -118,6 +120,7 @@ class ArticleController {
     }
 
     @Transactional
+    @Secured("IS_AUTHENTICATED_FULLY")
     def delete(Article article) {
 
         if (article == null) {

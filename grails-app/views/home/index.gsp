@@ -18,7 +18,8 @@
             <g:if test="${articleCount == 0}">
                 <div class="alert alert-info"><g:message code="YouBarter.home.alert.noArticles"/></div>
             </g:if>
-            <f:table collection="${articleList}" except="user"/>
+
+            <f:table collection="${articleList}" properties="['id', 'offers', 'name', 'category', 'description']"/>
             <div class="pagination">
                 <g:paginate total="${articleCount ?: 0}" />
             </div>

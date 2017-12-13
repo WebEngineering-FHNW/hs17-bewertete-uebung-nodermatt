@@ -34,7 +34,7 @@
                             <li><a href="/logout">Logout</a></li>
                         </sec:ifLoggedIn>
                         <sec:ifNotLoggedIn>
-                            <li><a href="/login/auth">Login</a></li>
+                            <li><a href="/home">Login</a>a></li>
                         </sec:ifNotLoggedIn>
                     </ul>
                 </div>

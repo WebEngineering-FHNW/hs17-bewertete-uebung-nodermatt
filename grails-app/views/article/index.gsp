@@ -7,6 +7,9 @@
     </head>
     <body>
         <h1>YouBarter marketplace</h1>
+        <sec:ifNotLoggedIn>
+            <div class="alert alert-danger">You are not logged in. Log in to create new articles or offers></div>
+        </sec:ifNotLoggedIn>
         <g:form controller="Article" action="create">
             <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
         </g:form>
@@ -29,6 +32,7 @@
                 <g:if test="${articleCount == 0}">
                     <div class="alert alert-danger"><g:message code="YouBarter.home.error.noResults"/></div>
                 </g:if>
+
                 <g:each var="article" in="${articles}">
                     <div class="col-xs-4 col-md-3">
                         <div class="panel panel-default" style="width:120px">
