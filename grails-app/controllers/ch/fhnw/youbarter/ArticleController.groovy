@@ -27,12 +27,6 @@ class ArticleController {
         Article item = Article.get(id)
     }
 
-    def isOwner() {
-        user = springSecurityService.currentUser
-        println("User: " + user + ", article: " + article)
-        println("current user is owner: " + ArticleService.isOwner())
-    }
-
     @Secured("IS_AUTHENTICATED_FULLY")
     def filter() {
         Category cat = Category.findById(params.filter)
@@ -101,7 +95,9 @@ class ArticleController {
     }
     @Secured("IS_AUTHENTICATED_FULLY")
     def edit(Article article) {
-        respond article
+        if(articleService.isOwner(user, article))
+            respond article
+        else redirect(view:'show', article: article)
     }
 
     @Transactional
@@ -133,22 +129,25 @@ class ArticleController {
     @Transactional
     @Secured("IS_AUTHENTICATED_FULLY")
     def delete(Article article) {
+        if(articleService.isOwner(user, article)) {
 
-        if (article == null) {
-            transactionStatus.setRollbackOnly()
-            notFound()
-            return
-        }
-
-        article.delete flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'article.label', default: 'Article'), article.id])
-                redirect (controller:'Home')//show home controller
+            if (article == null) {
+                transactionStatus.setRollbackOnly()
+                notFound()
+                return
             }
-            '*'{ render status: NO_CONTENT }
+
+            article.delete flush:true
+
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.deleted.message', args: [message(code: 'article.label', default: 'Article'), article.id])
+                    redirect (controller:'Home')//show home controller
+                }
+                '*'{ render status: NO_CONTENT }
+            }
         }
+        else redirect(view:'show', article: article)
     }
 
     @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
