@@ -28,18 +28,16 @@ class ArticleController {
     @Secured("IS_AUTHENTICATED_FULLY")
     def filter() {
         Category cat = Category.findById(params.filter)
-        def ax = Article.findAllWhere(category: cat)
-        println("mein filter: " + params.get("filter"))
-        println(ax.toString())
+        def ax = Article.findAllWhere(category: cat) //get all articles within provided category
         return ax
     }
 
     @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
     def index(Integer max) {
-        def categories = Category.list()
+        def categories = Category.list()//get all categories
         List<Article> articles
         //find all where category = id or if empty all
-        if(params.filter) {
+        if(params.filter) {//if a category is passed filter articles
             articles = filter()
         } else {
             articles = Article.list()
@@ -56,6 +54,7 @@ class ArticleController {
 
     @Secured("IS_AUTHENTICATED_FULLY")
     def create() {
+        //set user attribute of article to currently logged in user
         User user = springSecurityService.currentUser
         session.setAttribute("user", user.id)
         respond new Article(params)
@@ -82,7 +81,7 @@ class ArticleController {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'article.label', default: 'Article'), article.id])
                 //redirect article
-                redirect (controller:'Home')//show home controller
+                redirect (controller:'Home')//redirect user to his home view
             }
             '*' { respond article, [status: CREATED] } //default, changed it to custom beavhiour below
             //redirect (controller:'Home', ){ respond article, [status: CREATED] }
@@ -140,6 +139,7 @@ class ArticleController {
         }
     }
 
+    @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
     protected void notFound() {
         request.withFormat {
             form multipartForm {

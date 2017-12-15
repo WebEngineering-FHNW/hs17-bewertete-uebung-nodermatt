@@ -32,7 +32,6 @@ class OfferController {
 
     @Secured("IS_AUTHENTICATED_FULLY")
     def create() {
-
         LocalDate date = LocalDate.now()
         println(params)
         Article article = Article.findById(params.articleID)
@@ -54,6 +53,7 @@ class OfferController {
     @Transactional
     @Secured("IS_AUTHENTICATED_FULLY")
     def save(Offer offer) {
+        // debug information
         log.info("invoked save")
         print("==========")
         print(offer.article)
@@ -83,17 +83,19 @@ class OfferController {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'offer.label', default: 'Offer'), offer.id])
                 //redirect offer
-                redirect (controller:'Home')//show home controller instead
+                redirect (controller:'Home')//show users home view after successful creation
             }
             '*' { respond offer, [status: CREATED] }
         }
     }
 
+    @Secured("IS_AUTHENTICATED_FULLY")
     def edit(Offer offer) {
         respond offer
     }
 
     @Transactional
+    @Secured("IS_AUTHENTICATED_FULLY")
     def update(Offer offer) {
         if (offer == null) {
             transactionStatus.setRollbackOnly()
@@ -119,6 +121,7 @@ class OfferController {
     }
 
     @Transactional
+    @Secured("IS_AUTHENTICATED_FULLY")
     def delete(Offer offer) {
 
         if (offer == null) {
