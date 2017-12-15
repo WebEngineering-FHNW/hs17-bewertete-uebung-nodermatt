@@ -7,7 +7,6 @@
     </head>
     <body>
         <a href="#edit-article" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <p>isOwner: ${isOwner}</p>
         <div id="edit-article" class="content scaffold-edit" role="main">
             <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
@@ -23,7 +22,8 @@
             <g:form resource="${this.article}" method="PUT" exclude="name">
                 <g:hiddenField name="version" value="${this.article?.version}" />
                 <fieldset class="form" exclude="name">
-                    <f:all bean="article" exclude="name" />
+                    <f:all bean="article" except="offers, user"/>
+
                     <!-- exlcude category , offer user and use passed variable from controller, which is the currenlty logged in
                         also, use
                     -->
