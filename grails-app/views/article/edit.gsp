@@ -7,7 +7,7 @@
     </head>
     <body>
         <a href="#edit-article" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-
+        <p>isOwner: ${isOwner}</p>
         <div id="edit-article" class="content scaffold-edit" role="main">
             <h1><g:message code="default.edit.label" args="[entityName]" /></h1>
             <g:if test="${flash.message}">
@@ -20,10 +20,13 @@
                 </g:eachError>
             </ul>
             </g:hasErrors>
-            <g:form resource="${this.article}" method="PUT">
+            <g:form resource="${this.article}" method="PUT" exclude="name">
                 <g:hiddenField name="version" value="${this.article?.version}" />
-                <fieldset class="form">
-                    <f:all bean="article"/>
+                <fieldset class="form" exclude="name">
+                    <f:all bean="article" exclude="name" />
+                    <!-- exlcude category , offer user and use passed variable from controller, which is the currenlty logged in
+                        also, use
+                    -->
                 </fieldset>
                 <fieldset class="buttons">
                     <input class="save" type="submit" value="${message(code: 'default.button.update.label', default: 'Update')}" />
