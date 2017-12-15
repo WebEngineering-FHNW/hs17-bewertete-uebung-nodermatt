@@ -1,7 +1,7 @@
 package ch.fhnw.youbarter
 
 import com.mycompany.myapp.User
-import com.mycompany.myapp.UserService
+import ch.fhnw.youbarter.ArticleService
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,7 +14,8 @@ class ArticleController {
 
     @Autowired
     SpringSecurityService springSecurityService
-
+    ArticleService articleService
+    User user
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -25,6 +26,13 @@ class ArticleController {
     def find(int id){
         Article item = Article.get(id)
     }
+
+    def isOwner() {
+        user = springSecurityService.currentUser
+        println("User: " + user + ", article: " + article)
+        println("current user is owner: " + ArticleService.isOwner())
+    }
+
     @Secured("IS_AUTHENTICATED_FULLY")
     def filter() {
         Category cat = Category.findById(params.filter)
@@ -49,13 +57,17 @@ class ArticleController {
 
     @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
     def show(Article article) {
-        respond article
+        user = springSecurityService.currentUser
+        boolean isOwner
+        isOwner = articleService.isOwner(user, article)
+
+        render(view:'show', model: [article: article, isOwner: isOwner])
     }
 
     @Secured("IS_AUTHENTICATED_FULLY")
     def create() {
         //set user attribute of article to currently logged in user
-        User user = springSecurityService.currentUser
+        user = springSecurityService.currentUser
         session.setAttribute("user", user.id)
         respond new Article(params)
     }
