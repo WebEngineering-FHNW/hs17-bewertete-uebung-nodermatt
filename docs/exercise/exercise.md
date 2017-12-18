@@ -34,13 +34,15 @@ How to start the project: (if other than `grailsw run-app`)
 
 How to test the project:  (if other than `grailsw test-app`)
 
-Project description:      (if other than `/index.html`)
+Project description:'/about'
 
-External contributions:
+External contributions: Grails tutorials page on i18n
 
-Other comments: 
+Other comments: During development I realised that offering categories doesn't make too much sense. The offer should be
+concrete as opposed to something vague as saying what kind of thing you'd offer for a given article. Therefore
+I removed that feature and implemented a feature that allows a user to offer articles that she/he added to the portal.
 
-I'm particular proud of:
+I'm particular proud of: See /about page for full list
 
 
 ## Project grading 

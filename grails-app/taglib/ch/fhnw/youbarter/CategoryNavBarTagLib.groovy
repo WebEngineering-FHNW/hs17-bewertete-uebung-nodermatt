@@ -15,6 +15,7 @@ class CategoryNavBarTagLib {
     Category categoryGames = new Category(name: "Games")
     Category categoryBooks = new Category(name: "Books")
 
+    // workaround for issue on hibernate session
     List<Category> categories = [categoryBooks, categoryClothes, categoryGames]
 
 
@@ -23,9 +24,9 @@ class CategoryNavBarTagLib {
         println("uri: " + uri)
         //localhost:8080/article/index?filter=1
         for (Category cat : categories) {
+            //for every category, return a link that will set its ID to the filter
             String name = cat.name
             out << "<a class='dropdown-item' href='${uri}?filter=${cat.id}'>$name</a>"
-            println(out)
         }
 
     }

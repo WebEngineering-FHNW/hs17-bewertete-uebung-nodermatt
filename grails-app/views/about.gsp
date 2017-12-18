@@ -14,6 +14,7 @@
                 <ul>
                     <li>Multilingual support: I used grails integrated i18n system to display text in locales defined in application.yml. You can change the language by clicking on the <strong>categories</strong> dropdown in the navbar</li>
                     <li>Nice UI with messages that inform the user if he does something wrong</li>
+                    <li>Including a custom taglib to switch between languages (copied from grails tutorials) and filter articles by category</li>
                     <li>Usage of advanced plugins like spring security boot:</li>
                     <li>Filter feature to display articles according to category of article</li>
                     <li>home view where users can see their articles and offers they made on other users articles</li>
