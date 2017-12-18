@@ -1,9 +1,6 @@
 package ch.fhnw.youbarter
 
-import com.mycompany.myapp.User
-import ch.fhnw.youbarter.Article
 import grails.gorm.transactions.Transactional
-import groovy.util.logging.Log
 import groovy.util.logging.Slf4j
 
 @Transactional

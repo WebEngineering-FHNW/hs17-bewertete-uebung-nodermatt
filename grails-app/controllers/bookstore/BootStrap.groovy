@@ -1,8 +1,10 @@
 package com.mycompany.myapp
 
 import ch.fhnw.youbarter.Article
-import ch.fhnw.youbarter.Offer
 import ch.fhnw.youbarter.Category
+import ch.fhnw.youbarter.Role
+import ch.fhnw.youbarter.User
+import ch.fhnw.youbarter.UserRole
 
 class BootStrap {
 

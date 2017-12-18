@@ -1,5 +1,6 @@
 package com.mycompany.myapp
 
+import ch.fhnw.youbarter.HomeController
 import grails.testing.web.controllers.ControllerUnitTest
 import spock.lang.Specification
 

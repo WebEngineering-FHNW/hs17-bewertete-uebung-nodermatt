@@ -1,6 +1,7 @@
 package com.mycompany.myapp
 
-import grails.test.mixin.*
+import ch.fhnw.youbarter.Role
+import ch.fhnw.youbarter.RoleController
 import spock.lang.*
 
 @TestFor(RoleController)

@@ -1,4 +1,4 @@
-package com.mycompany.myapp
+package ch.fhnw.youbarter
 
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString

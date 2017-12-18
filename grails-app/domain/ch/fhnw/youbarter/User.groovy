@@ -1,7 +1,5 @@
-package com.mycompany.myapp
+package ch.fhnw.youbarter
 
-import ch.fhnw.youbarter.Article
-import ch.fhnw.youbarter.Offer
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 import grails.compiler.GrailsCompileStatic

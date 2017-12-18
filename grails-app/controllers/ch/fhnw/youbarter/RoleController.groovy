@@ -1,4 +1,5 @@
-package com.mycompany.myapp
+package ch.fhnw.youbarter
+
 import grails.plugin.springsecurity.annotation.Secured
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional

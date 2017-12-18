@@ -1,7 +1,5 @@
 package ch.fhnw.youbarter
 
-import com.mycompany.myapp.User
-import ch.fhnw.youbarter.ArticleService
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
 import org.springframework.beans.factory.annotation.Autowired

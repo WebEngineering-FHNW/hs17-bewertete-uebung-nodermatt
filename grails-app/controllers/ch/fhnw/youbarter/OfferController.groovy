@@ -1,6 +1,5 @@
 package ch.fhnw.youbarter
 
-import com.mycompany.myapp.User
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
 import org.springframework.beans.factory.annotation.Autowired
@@ -9,7 +8,6 @@ import java.time.LocalDate
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
-import ch.fhnw.youbarter.Article
 
 @Transactional(readOnly = true)
 class OfferController {

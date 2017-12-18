@@ -1,7 +1,5 @@
 package ch.fhnw.youbarter
 
-import com.mycompany.myapp.User
-
 class Article {
     String name
     String description

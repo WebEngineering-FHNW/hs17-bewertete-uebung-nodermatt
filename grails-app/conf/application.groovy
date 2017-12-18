@@ -1,9 +1,9 @@
 
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.mycompany.myapp.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.mycompany.myapp.UserRole'
-grails.plugin.springsecurity.authority.className = 'com.mycompany.myapp.Role'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'ch.fhnw.youbarter.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'ch.fhnw.youbarter.UserRole'
+grails.plugin.springsecurity.authority.className = 'ch.fhnw.youbarter.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],
@@ -31,9 +31,9 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.mycompany.myapp.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.mycompany.myapp.UserRole'
-grails.plugin.springsecurity.authority.className = 'com.mycompany.myapp.Role'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'ch.fhnw.youbarter.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'ch.fhnw.youbarter.UserRole'
+grails.plugin.springsecurity.authority.className = 'ch.fhnw.youbarter.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],
@@ -59,9 +59,9 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.mycompany.myapp.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.mycompany.myapp.UserRole'
-grails.plugin.springsecurity.authority.className = 'com.mycompany.myapp.Role'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'ch.fhnw.youbarter.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'ch.fhnw.youbarter.UserRole'
+grails.plugin.springsecurity.authority.className = 'ch.fhnw.youbarter.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],
@@ -87,9 +87,9 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.mycompany.myapp.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.mycompany.myapp.UserRole'
-grails.plugin.springsecurity.authority.className = 'com.mycompany.myapp.Role'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'ch.fhnw.youbarter.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'ch.fhnw.youbarter.UserRole'
+grails.plugin.springsecurity.authority.className = 'ch.fhnw.youbarter.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],

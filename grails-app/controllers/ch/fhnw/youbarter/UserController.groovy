@@ -1,4 +1,4 @@
-package com.mycompany.myapp
+package ch.fhnw.youbarter
 
 class UserController {
 

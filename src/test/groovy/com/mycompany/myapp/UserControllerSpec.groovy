@@ -1,6 +1,7 @@
 package com.mycompany.myapp
 
-import grails.test.mixin.*
+import ch.fhnw.youbarter.User
+import ch.fhnw.youbarter.UserController
 import spock.lang.*
 
 @TestFor(UserController)
