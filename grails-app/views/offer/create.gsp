@@ -8,7 +8,6 @@
   </head>
   <body>
       <h1>Create new offer for ${article?.name}</h1>
-      <p>Lorem ipsum...</p>
       <div class="container">
           <g:if test="${flash.message}">
               <div class="message alert alert-info" role="status">${flash.message}</div>
@@ -33,12 +32,6 @@
                   <g:submitButton name="create" class="save btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
               </fieldset>
           </g:form>
-          my params ${params}
-
-          <br>my article: ${params.get("article.id")}
-          <br>my categories: ${params.get("offeredArticle.id")}
-          <br>my offerer: ${params.get("offerer.id")}
-          <br>my date: ${params.get("posted_day") + "." + params.get("posted_month") + "." + params.get("posted_year")}
       </div> 
       </div> 
     </body>

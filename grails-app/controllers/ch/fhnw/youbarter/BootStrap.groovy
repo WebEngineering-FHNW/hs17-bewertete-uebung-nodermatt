@@ -1,4 +1,4 @@
-package com.mycompany.myapp
+package ch.fhnw.youbarter
 
 import ch.fhnw.youbarter.Article
 import ch.fhnw.youbarter.Category

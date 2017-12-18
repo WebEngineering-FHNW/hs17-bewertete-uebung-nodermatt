@@ -1,4 +1,4 @@
-package bookstore
+package ch.fhnw.youbarter
 
 class UrlMappings {
 

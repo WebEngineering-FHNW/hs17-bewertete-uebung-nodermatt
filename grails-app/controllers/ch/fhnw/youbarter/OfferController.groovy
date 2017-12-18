@@ -15,6 +15,8 @@ class OfferController {
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
     @Autowired
     SpringSecurityService springSecurityService
+    OfferService offerService
+    User user
 
     @Secured('ROLE_ADMIN')
     def index(Integer max) {
@@ -23,9 +25,10 @@ class OfferController {
     }
     @Secured("IS_AUTHENTICATED_FULLY")
     def show(Offer offer) {
-        println("Invoked show")
-        println(offer.toString())
-        respond offer
+        user = springSecurityService.currentUser
+        boolean isOwner
+        isOwner = offerService.isOwner(user, offer)
+        render(view:'show', model: [offer: offer, isOwner: isOwner])
     }
 
     @Secured("IS_AUTHENTICATED_FULLY")
@@ -51,16 +54,6 @@ class OfferController {
     @Transactional
     @Secured("IS_AUTHENTICATED_FULLY")
     def save(Offer offer) {
-        // debug information
-        log.info("invoked save")
-        print("==========")
-        print(offer.article)
-        print(offer.offerer)
-        print(offer.offeredArticle)
-        print(offer.posted)
-        println()
-        print("invoked save")
-        print(params)
         if (offer == null) {
             transactionStatus.setRollbackOnly()
             notFound()
