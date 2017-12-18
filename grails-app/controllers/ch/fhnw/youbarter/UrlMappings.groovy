@@ -16,6 +16,7 @@ class UrlMappings {
 //        "/home"(view:'/home/index')
         "500"(view:'/error')
         "404"(view:'/notFound')
+        '/about'(view:'/about')
         //"405"(view:'/error')
     }
 }
