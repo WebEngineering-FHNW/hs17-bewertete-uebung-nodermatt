@@ -10,10 +10,6 @@
         <sec:ifNotLoggedIn>
             <div class="alert alert-danger">You are not logged in. Log in to create new articles or offers></div>
         </sec:ifNotLoggedIn>
-
-        <g:form controller="Article" action="create">
-            <g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
-        </g:form>
         <div class="container-fluid">
             <div class="row">
                 <g:if test="${articleCount == 0}">
@@ -22,7 +18,6 @@
                 <g:each var="article" in="${articles}">
                     <div class="col-xs-4 col-md-3">
                         <div class="panel panel-default" style="width:120px">
-                            <img width="100" src="img_avatar3.png" alt="Card image">
                             <div class="panel-body">
                                 <h4 class="panel-title">${article.name}</h4>
                                 <p class="panel-text">${article.description}</p>

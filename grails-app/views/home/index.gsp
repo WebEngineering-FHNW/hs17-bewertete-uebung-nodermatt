@@ -11,8 +11,6 @@
         <g:if test="${flash.message}">
             <div class="alert alert-success" role="status">${flash.message}</div>
         </g:if>
-        <div class="nav" role="navigation">
-        </div>
         <div id="list-article" class="content scaffold-list" role="main">
             <h1><g:message code="YouBarter.home.myArticles"/></h1>
             <g:if test="${articleCount == 0}">

@@ -82,9 +82,11 @@ class OfferController {
 
     @Secured("IS_AUTHENTICATED_FULLY")
     def edit(Offer offer) {
-        respond offer
+        flash.message = message(code: 'YouBarter.offer.edit.error')
+        redirect (controller:'Home')
     }
 
+    /*
     @Transactional
     @Secured("IS_AUTHENTICATED_FULLY")
     def update(Offer offer) {
@@ -109,27 +111,29 @@ class OfferController {
             }
             '*'{ respond offer, [status: OK] }
         }
-    }
+    }*/
 
     @Transactional
     @Secured("IS_AUTHENTICATED_FULLY")
     def delete(Offer offer) {
-
-        if (offer == null) {
-            transactionStatus.setRollbackOnly()
-            notFound()
-            return
-        }
-
-        offer.delete flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'offer.label', default: 'Offer'), offer.id])
-                redirect action:"index", method:"GET"
+        if(offerService.isOwner(user, offer)) {
+            if (offer == null) {
+                transactionStatus.setRollbackOnly()
+                notFound()
+                return
             }
-            '*'{ render status: NO_CONTENT }
-        }
+
+            offer.delete flush:true
+
+            request.withFormat {
+                form multipartForm {
+                    flash.message = message(code: 'default.deleted.message', args: [message(code: 'offer.label', default: 'Offer'), offer.id])
+                    redirect action:"index", method:"GET"
+                }
+                '*'{ render status: NO_CONTENT }
+            }
+        } else redirect(view:'show', article: article)
+
     }
 
     protected void notFound() {
