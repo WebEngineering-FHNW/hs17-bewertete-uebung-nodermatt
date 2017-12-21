@@ -12,6 +12,9 @@
             <div class="alert alert-success" role="status">${flash.message}</div>
         </g:if>
         <div id="list-article" class="content scaffold-list" role="main">
+            <g:form controller="Article" action="create">
+                <g:submitButton name="create" class="btn btn-primary" value="${message(code: 'default.button.create.label', default: 'Create')}" />
+            </g:form>
             <h1><g:message code="YouBarter.home.myArticles"/></h1>
             <g:if test="${articleCount == 0}">
                 <div class="alert alert-info"><g:message code="YouBarter.home.alert.noArticles"/></div>
