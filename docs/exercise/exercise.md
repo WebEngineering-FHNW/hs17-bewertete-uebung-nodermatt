@@ -47,4 +47,26 @@ I'm particular proud of: See /about page for full list
 
 ## Project grading 
 
-< to be filled by lecturer>
+Description as part of the app (about) instead of static html. Some validity issues with
+element nesting and charset setting.
+The application works fine.
+
+Functionality covers basic CRUD operations for a domain with 1:m and m:n relations, 
+specialized list views, internationalization (at least partly), and role based security.
+
+Engingeering:
+Commit log is ok (started from scratch, some commits from user "UNKNOWN"?).
+No Tests. Some issues with html validity. Nice use of taglibs (still, some duplication
+remains in the views). Good use of Web MVC.
+
+I award three extra points for the particular effort of using spring security and 
+internationalization.
+
+Congratulations!
+You created a nice, multi-user, DB-backed, distributed, multi-language web application
+all by yourself from scratch. 
+Given the time contraints, many professional web developers would find it difficult to
+achieve the same.
+
+Total grade: 6.0
+
